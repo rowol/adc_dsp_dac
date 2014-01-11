@@ -1,4 +1,4 @@
-adc_dac_loop
+adc_dac
 ============
 
-ADC input -> filter -> DAC output loop for Discovery F4
+ADC input -> filter -> DAC output for Discovery F4
