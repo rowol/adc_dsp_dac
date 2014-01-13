@@ -63,7 +63,6 @@ endif
 INCLUDES  = -I.
 
 # Include files from STM libraries
-INCLUDES += -I$(STM_COMMON)/Utilities/STM32F4-Discovery
 INCLUDES += -I$(STM_COMMON)/Libraries/CMSIS/Include 
 INCLUDES += -I$(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Include
 INCLUDES += -I$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/inc
@@ -79,8 +78,7 @@ OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 
 
 vpath %.c \
-$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src \
-$(STM_COMMON)/Utilities/STM32F4-Discovery 
+$(STM_COMMON)/Libraries/STM32F4xx_StdPeriph_Driver/src 
 
 vpath %.s \
 $(STM_COMMON)/Libraries/CMSIS/ST/STM32F4xx/Source/Templates/TrueSTUDIO
