@@ -10,7 +10,7 @@ DEBUG=1
 STLINK=~/stlink.git
 
 
-SRCS=main.c dac.c adc.c tmr_sample.c timer.c led.c 
+SRCS=main.c dac.c adc.c gpio_square_wave.c tmr_sample.c timer.c led.c 
 SRCS += system_stm32f4xx.c
 SRCS += stm32f4xx_adc.c stm32f4xx_dac.c stm32f4xx_gpio.c stm32f4xx_rcc.c
 SRCS += stm32f4xx_tim.c misc.c
