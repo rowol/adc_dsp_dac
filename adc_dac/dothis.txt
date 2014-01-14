@@ -3,13 +3,16 @@
 
 Finish setting up the ADC parameters properly
 Finish setting up the DAC parameters properly
-Write a digital filter to filter the ramp ...?
 Remove timer.c/h and led modules
 Remove GDB targets and stuff like that in Makefile
+Update README.TXT
+
+
 
 
 Done
 
+Write a digital filter to filter the ramp ...?
 FIX BUILD, remove all the USB crap, fix lseek, read etc problem
 (Maybe look at Blinky example for this?)
  * Why does adc_dac need syscalls.c, but blinky doesn't?!?

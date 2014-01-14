@@ -1,16 +1,12 @@
 #
-# Build theremin and FM synth library code
-# Define DEBUG for a debug build
+# Build sample ADC -> filter -> DAC path code
 #
-
-#Handy HACK, define for debug version
-DEBUG=1
 
 # Put your stlink folder here so make burn will work.
 STLINK=~/stlink.git
 
 
-SRCS=main.c dac.c adc.c gpio_square_wave.c tmr_sample.c timer.c led.c 
+SRCS=main.c dac.c adc.c gpio_square_wave.c tmr_sample.c 
 SRCS += system_stm32f4xx.c
 SRCS += stm32f4xx_adc.c stm32f4xx_dac.c stm32f4xx_gpio.c stm32f4xx_rcc.c
 SRCS += stm32f4xx_tim.c misc.c
@@ -25,18 +21,10 @@ STM_COMMON=../STM32F4-Discovery_FW_V1.1.0
 CC=arm-none-eabi-gcc
 LD=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
-GDB=arm-none-eabi-gdb
 
 OBJDIR=obj/
 
-ifdef DEBUG
- # For GDB, disable optimizer
- CFLAGS  = -ggdb -O0
-else
- CFLAGS  = -O2 
-endif
-
-CFLAGS += -Wall -Tstm32_flash.ld 
+CFLAGS += -O2 -Wall -Tstm32_flash.ld 
 CFLAGS += -DUSE_STDPERIPH_DRIVER
 CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m4 -mthumb-interwork
 CFLAGS += -funsigned-char
@@ -56,9 +44,8 @@ CFLAGS += -Wl,--gc-sections
 
 #Strip the debug information, so as to make the code as small as possible.  
 #(I presume that you'd want to do this in a dead-code removal build.)
-ifndef DEBUG
 CFLAGS += -Wl,-s
-endif
+
 
 INCLUDES  = -I.
 
@@ -117,19 +104,3 @@ clean:
 # Flash the STM32F4
 burn: all
 	$(STLINK)/st-flash write $(PROJ_NAME).bin 0x8000000
-
-
-
-#######################################################
-# Debugging targets
-#######################################################
-gdb: all
-#	(xterm  $(STLINK)/st-util &)
-#	putty &
-	$(GDB) $(PROJ_NAME).elf
-
-gdbd: all
-	xterm  $(STLINK)/st-util &
-
-db: gdbd gdb
-

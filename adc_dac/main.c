@@ -20,8 +20,6 @@
 #include "adc.h"
 #include "gpio_square_wave.h"
 #include "tmr_sample.h"
-#include "timer.h"
-#include "led.h"
 
 
 
@@ -41,31 +39,14 @@ int main(void)
           ;
 	}
 
-   led_init(LED1);   //PC2, used to show main loop (below) is running
-
    gsw_init();
    
    ADC_init();
    DAC2_init();
    tmr_sample_init();
    
-   /*!< At this stage the microcontroller clock setting is already configured, 
-     this is done through SystemInit() function which is called from startup
-     file (startup_stm32f4xx.s) before to branch to application main.
-     To reconfigure the default setting of SystemInit() function, refer to
-     system_stm32f4xx.c file
-   */    
-
-   TMR tLED;
-   tmr_setInterval(&tLED, LED_PERIOD_MS);
-
-   while (true) {
-      //Flash LED twice a second
-      if (tmr_isExpired(&tLED)) {
-         tmr_reset(&tLED);
-         led_toggle(LED1);
-      }
-   }
+   while (true)
+      ;
 }
 
 
