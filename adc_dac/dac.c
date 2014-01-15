@@ -32,7 +32,7 @@ void DAC2_init(void)
    GPIO_Init(GPIOA, &GPIO_InitStructure);
    
    /* DAC channel 2 Configuration */
-   DAC_InitTypeDef  DAC_InitStructure;
+   DAC_InitTypeDef DAC_InitStructure;
    DAC_InitStructure.DAC_Trigger = DAC_Trigger_None;
    DAC_InitStructure.DAC_WaveGeneration = DAC_WaveGeneration_None;
    DAC_InitStructure.DAC_OutputBuffer = DAC_OutputBuffer_Enable;

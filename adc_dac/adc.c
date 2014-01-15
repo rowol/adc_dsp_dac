@@ -41,9 +41,11 @@ void ADC_init(void)
    /* ADC Common configuration *************************************************/
    ADC_CommonInitTypeDef ADC_CommonInitStructure;
    ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
-   ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
+   // APB2 clock is 84Mhz, so with /8, ADC PCLK would be 10.5Mhz
+   ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div8;
    ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
-   ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+   //TwoSamplingDelay is only used in dual and triple modes)
+   ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;   
    ADC_CommonInit(&ADC_CommonInitStructure);
  
    /* ADC1 regular channel 10 to 15 configuration ************************************/
@@ -52,10 +54,15 @@ void ADC_init(void)
    ADC_InitStructure.ADC_ScanConvMode = DISABLE; // 1 Channel
    ADC_InitStructure.ADC_ContinuousConvMode = DISABLE; // Conversions Triggered
    ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None; // Manual
-   ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T2_TRGO;
+   ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T2_TRGO;  //Unused for manual?
    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
    ADC_InitStructure.ADC_NbrOfConversion = 1;
-  
+   ADC_Init(ADC1, &ADC_InitStructure);
+
+   //The sample time is how long the input is sampled before the conversion is done.
+   //Since PCLK is 10.5Mhz, 144 cycles is about 13.7uS and the DAC output rate is
+   //running manually off a 44Khz timer interrupt (22uS), we should be fine
+   //(once conversion starts, it takes about 16 cycles)
    ADC_RegularChannelConfig(ADC_NUM, ADC_CHANNEL, 1, ADC_SampleTime_144Cycles);
  
    /* Enable ADC1 */

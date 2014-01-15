@@ -39,8 +39,7 @@ int main(void)
           ;
 	}
 
-   gsw_init();
-   
+   gsw_init();   
    ADC_init();
    DAC2_init();
    tmr_sample_init();
@@ -126,7 +125,7 @@ float filter(register float val)
    iir= val * 0.001255059246835381 * 0.75;   
    iir -= 0.9974898815063291*tmp; fir= -tmp;
    iir -= -1.981739077169366*buf[0];
-   
+
    fir += iir;
    buf[1]= iir; val= fir;
    return val;
