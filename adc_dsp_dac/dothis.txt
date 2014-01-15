@@ -1,12 +1,15 @@
 
-Finish setting up the ADC parameters properly
-Finish setting up the DAC parameters properly
-Update READMEs
+Code clean up
+Write blog article
 
 
 
 DONE
 ====
+Rename repository adc_dsp_dac
+Finish setting up the ADC parameters properly
+Finish setting up the DAC parameters properly
+Update READMEs
 Remove timer.c/h and led modules
 Remove GDB targets and stuff like that in Makefile
 Write a digital filter to filter the ramp ...?
