@@ -6,7 +6,7 @@
 #ifndef HW_H
 #define HW_H
 
-#define APB1_FREQ        	84000000
+#define APB1_FREQ          84000000
 #define SAMPLE_FREQ           44000
 
 //Define the 12 bit DAC converter's range

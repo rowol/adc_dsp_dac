@@ -34,10 +34,10 @@ float filter(register float val);
 
 int main(void)
 {
-	if (SysTick_Config(SystemCoreClock/1000)) {
-	 	while (true)  // Capture error
+   if (SysTick_Config(SystemCoreClock/1000)) {
+      while (true)  // Capture error
           ;
-	}
+   }
 
    gsw_init();   
    ADC_init();
