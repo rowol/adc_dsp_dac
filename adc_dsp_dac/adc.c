@@ -41,7 +41,9 @@ void ADC_init(void)
    /* ADC Common configuration *************************************************/
    ADC_CommonInitTypeDef ADC_CommonInitStructure;
    ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
-   // APB2 clock is 84Mhz, so with /8, ADC PCLK would be 10.5Mhz
+   // APB2 clock is half the 168Mhz system clock (i.e. 84Mhz),
+   // so with a div by 8, ADC PCLK would be 10.5Mhz.
+   // F4 datasheet says ADC clock freq should be 0.6Mhz - 30Mhz for Vdda=3.3V
    ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div8;
    ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
    //TwoSamplingDelay is only used in dual and triple modes)
