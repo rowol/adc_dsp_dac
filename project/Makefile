@@ -2,8 +2,8 @@
 # Build sample ADC -> filter -> DAC path code
 #
 
-# Put your stlink folder here so make burn will work.
-STLINK=~/stlink.git
+OOCD = openocd
+OOCD_SCRIPT = scripts/openocd/stm32f4discovery.cfg
 
 
 SRCS=main.c dac.c adc.c gpio_square_wave.c tmr_sample.c 
@@ -103,4 +103,10 @@ clean:
 
 # Flash the STM32F4
 burn: all
-	$(STLINK)/st-flash write $(PROJ_NAME).bin 0x8000000
+	@echo DOWNLOAD to TARGET
+	$(Q)$(OOCD) -f $(OOCD_SCRIPT) \
+		-c "init" \
+		-c "halt 0" \
+		-c "flash write_image erase unlock $(PROJ_NAME).elf" \
+		-c "reset run" \
+		-c "shutdown" 2>&1

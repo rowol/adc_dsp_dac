@@ -1,0 +1,8 @@
+#!/bin/bash 
+docker run --rm -dit --privileged --name stm32_devenv -v /dev/bus/usb:/dev/bus/usb -v $(pwd):/work/project marcotti/stm32-openocd-devenv /bin/bash
+
+# run bash
+docker exec -it stm32_devenv bash
+
+# stop the container
+docker stop stm32_devenv

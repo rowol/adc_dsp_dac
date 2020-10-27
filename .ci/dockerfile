@@ -1,0 +1,6 @@
+FROM stronglytyped/arm-none-eabi-gcc:latest
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+      openocd && \
+    apt-get clean
