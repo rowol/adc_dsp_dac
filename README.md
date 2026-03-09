@@ -1,4 +1,4 @@
-This repository contains source code for the article [Realtime DSP with the STM32F4](http://www.wolinlabs.com/blog/adc_dsp_dac.html) 
+This repository contains source code for the article [Realtime DSP with the STM32F4](http://www.wolinlabs.com/blog/stm32f4.adc.dsp.dac.html) 
 
 <br>
 The project is buildable with the GNU Tools for ARM Embedded Processors toolchain v4.7.3, maintained by ARM Ltd.   I used Ubuntu Linux 12.04LTS for the build environment.  Code runs on an STM32F4 Discovery board.
